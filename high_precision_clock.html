@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>High Precision Clock</title>
+    <style>
+        html, body {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: white;
+            color: black;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 5em;
+        }
+    </style>
+</head>
+<body>
+    <div id="clock">Loading...</div>
+    <script>
+        function pad(num, size) {
+            let s = "000" + num;
+            return s.substr(s.length - size);
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const hours = pad(now.getHours(), 2);
+            const minutes = pad(now.getMinutes(), 2);
+            const seconds = pad(now.getSeconds(), 2);
+            const milliseconds = pad(now.getMilliseconds(), 3);
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}.${milliseconds}`;
+            requestAnimationFrame(updateClock);
+        }
+
+        requestAnimationFrame(updateClock);
+    </script>
+</body>
+</html>
